@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <style>
+            
+            body{
+                background-color: #000000;
+                font-family: courier new;
+                color: white;
+            }
+
+
+            #navbar {
+                word-spacing: 30px;
+                position: absolute;
+                top: 0px;
+                z-index: 3;
+                background-color: black;
+                height: 8px;
+                width: 100%;
+                right: 0px;
+                text-align:center;
+                font-size:15px;
+                padding-bottom: 100px;
+                padding-top:25px;
+                margin-bottom: 0;
+                font-family: courier new;
+
+            }
+
+            .title {
+                color: pink;
+            }
+            a:link {
+                color: white;
+                text-decoration: none;
+            }
+
+            /* visited link */
+            a:visited {
+                color: white;
+                text-decoration: none;
+            }
+
+            /* mouse over link */
+            a:hover {
+                background-color: black;
+                text-decoration-line: underline; 
+            }
+
+            /* selected link */
+            a:active {
+                color: white;
+                text-decoration: none;
+                background-color:#333333;
+
+            }
+
+            #profile_pic {
+                height:300px;
+                width:200px;
+                padding-bottom: 20px;
+            }
+
+
+            #match {
+            margin: 0 auto;
+                width: 90%;
+                font-size: 20px;
+                padding-left: 30px;
+                padding-top: 40px;
+                text-align: left;
+
+
+            }
+
+            
+
+            #titleHeader {
+                text-align: center;
+                padding-top: 115px;
+                font-size: 80px;
+
+            }
+
+           
+
+
+
+            #content1 {
+                font-size: 20px;
+            }
+
+
+            .titleSize {
+                color: black;
+                font-size: 20px;
+                background: #e4cde2
+
+            
+            
+        </style>
+        
+        
+        
+        
+        <script>
+            
+           function btnUnlike(clicked) {
+            
+            var my_likes = JSON.parse(localStorage.getItem("likedArray"));
+             for(i=0; i<my_likes.length;i++) {
+               var unlikeKey =  my_likes[i].firstName + my_likes[i].lastName + "_unlike";
+                 if(unlikeKey === clicked) {
+                     
+                    var delete_like_index = my_likes.indexOf(my_likes[i]);
+                    console.log(delete_like_index);
+                    
+                                    alert(my_likes[delete_like_index].firstName + "  was removed from your liked list!");
+                             my_likes.splice(delete_like_index, 1);
+                   
+                            localStorage.setItem("likedArray", JSON.stringify(my_likes));
+                            location.reload();
+                 }
+             }
+        }
+            var likedList = "";
+            
+            $( document ).ready(function() {
+               
+                var my_likes = JSON.parse(localStorage.getItem("likedArray"));
+                  //  alert(my_likes.length);
+        
+        for(i=0; i<my_likes.length;i++) {
+         
+            likedList += "<img id='profile_pic' src='" + my_likes[i].url + "'>" + "<br />" +
+                                "<span class='title'>First Name:  </span>" + my_likes[i].firstName + "" + "<br/>" +
+                                "<span class='title'>Last Name:  </span>" + my_likes[i].lastName + "" + "<br/>" +
+                                "<span class='title'>Title:  </span>" + my_likes[i].title + "" + "<br/>" +
+                                "<span class='title'>Age:  </span>" + my_likes[i].age + "" + "<br/>" +
+                                "<span class='title'>Gender:  </span>" + my_likes[i].my_gender + "" + "<br/>" +
+                                "<span class='title'>Birthday:  </span>" + my_likes[i].birthday + "" + "<br/>" +
+                                "<span class='title'>Description:  </span>" + my_likes[i].description + "" + "<br/>" +
+                                "<span class='title'>City:  </span>" + my_likes[i].city + "" + "<br/>" +
+                                "<span class='title'>State:  </span>" + my_likes[i].state + "" + "<br/>" +
+                                "<span class='title'>Religion:  </span>" + my_likes[i].religion + "" + "<br/>" +
+                                "<span class='title'>Wants Kids?:  </span>" + my_likes[i].wantsKids + "" + "<br/>" +
+                                "<span class='title'>Has Kids?:  </span>" + my_likes[i].hasKids + "" + "<br/>" +
+                                "<span class='title'>Status: </span>" + my_likes[i].status + "" + "<br/>" + "<button id='" + my_likes[i].firstName + my_likes[i].lastName + "_unlike'"
+                                        + "onclick='btnUnlike(this.id);'>" + "Unlike </button>" +"<br/>" + "<br/>" + "<br/>";
+                       
+
+            
+     
+            
+            
+           
+        }
+    
+    
+           $("#match").html(likedList);  
+        
+      
+            
+            });
+            
+            
+            
+            
+            
+            </script>
+    </head>
+    <body>
+
+
+        <div id="navbar"> 
+
+            <a href="Search.html">Search</a>
+            <a href="Edit.html">Profile</a>
+            <a href="Passed.html">Passed</a>
+            <a href="Liked.html">Liked</a>
+<a href="makeProfile.html">Register</a>
+
+
+
+
+
+        </div>
+        <div id="titleHeader"> My <span class="title">Likes</span> </div>
+        <div id="header">
+
+
+        </div>
+
+        <br><br>
+        <div id="myLikes">
+            <center>  </center>
+            
+      
+            
+            
+            <br><br>
+        </div>
+
+        <div id='match'>
+            
+            
+        </div>
+
+
+    </body>
+</html>

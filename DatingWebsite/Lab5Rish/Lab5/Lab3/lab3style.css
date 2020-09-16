@@ -1,0 +1,131 @@
+
+
+
+
+
+
+    body{
+        background-color: #000000;
+        font-family: courier new;
+        color: white;
+    }
+
+
+    #navbar {
+        word-spacing: 30px;
+        position: absolute;
+        top: 0px;
+        z-index: 3;
+        background-color: black;
+        height: 8px;
+        width: 100%;
+        right: 0px;
+        text-align:center;
+        font-size:15px;
+        padding-bottom: 100px;
+        padding-top:25px;
+        margin-bottom: 0;
+        font-family: courier new;
+
+    }
+
+    .title {
+        color: pink;
+    }
+    a:link {
+        color: white;
+        text-decoration: none;
+    }
+
+    /* visited link */
+    a:visited {
+        color: white;
+        text-decoration: none;
+    }
+
+    /* mouse over link */
+    a:hover {
+        background-color: black;
+        text-decoration-line: underline; 
+    }
+
+    /* selected link */
+    a:active {
+        color: white;
+        text-decoration: none;
+        background-color:#333333;
+
+    }
+
+    #profile_pic {
+        height:300px;
+        width:200px;
+        padding-bottom: 20px;
+    }
+
+
+    #profile {
+        float: left;
+        width: 30%;
+        padding-left: 30px;
+        padding-top: 40px;
+        text-align: left;
+
+    }
+
+    #image {
+        float: left;
+        width: 300px;
+        padding-right: 20px;
+        padding-left: 50px;
+        padding-top: 40px;
+    }
+
+    #titleHeader {
+        text-align: center;
+        padding-top: 115px;
+        font-size: 80px;
+
+    }
+
+    #myLikes {
+        padding-top: 40px;
+        float: left;
+        width: 30%;
+        height: 100%;
+        color: white;
+        border: 5px;
+        text-align: center;
+
+
+
+    }
+
+    #likesHeader {
+        padding-left: 11%;
+        float: left;
+        top: 120px;
+        font-size: 25px;
+        border: 3px;
+        text-shadow: 2px 2px #aa5ba2;
+    }
+
+
+
+    #content1 {
+        font-size: 20px;
+    }
+
+
+    .titleSize {
+        color: black;
+        font-size: 20px;
+        background: #e4cde2
+        
+        
+    }
+    #likes_pic {
+       height:150px;
+        width:100px; 
+    }
+   

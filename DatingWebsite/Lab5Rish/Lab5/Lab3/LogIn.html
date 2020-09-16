@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+       
+            
+        
+                
+                
+                
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+         <style>
+            
+            body {
+                background-color: black;
+                font-family: courier new;
+                color: black;
+            }
+            
+            
+            #login {
+                margin: 0 auto;
+               
+                width: 40%;
+           border-radius: 25px;
+           border: 2px solid #eb3776;
+  padding: 30px;
+margin-top: 300px;
+                background-color: #e6b8d0;
+            }
+            
+            
+            #loginTitle {
+                font-size: 25px;
+            }
+            </style>
+                
+            <script>
+                
+                
+                
+                
+                
+                
+                
+              
+                function logInGo() {
+
+                    var username = $("#username").val();
+                    var password = $("#password").val();
+
+                    $.ajax({
+                        type: "POST",
+                        url: "https://localhost:44388/api/Profiles/LogIn" + "?username=" + username + "&password=" + password,
+                      
+                        contentType: "application/json",
+                        dataType: "json",
+
+                        success: function (data) {
+                            var result = data;
+                            if (result == true) {
+
+                                
+                                alert("You have successfully signed in, welcome.");
+                                location.replace('Edit.html');
+                            }
+
+                            else {
+                                alert("Incorrect username or password please try again!");
+                            }
+
+                        }
+                    });
+
+                }
+                
+                </script>
+            
+            
+            
+    </head>
+    <body>
+       
+        
+        
+        
+        <div id="login">
+            
+            <div id="loginTitle">
+                Log-In to Find-A-Match.Com
+                
+            </div>
+            
+            
+            <div id="loginMessage">
+                Please enter your username and password.
+            </div>
+ <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" required> 
+                        <br><br>
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" required> 
+                        <br><br><br><br>
+                        <button id="logInGo" onclick='logInGo()'> Go </button>
+                      New user?  <a href="makeProfile.html"> Click here</a>
+                      <br><br><br>
+                      <div id='errorMessage'>
+                          
+                      </div>
+        </div>
+        
+        
+        
+        
+        
+        
+        
+    </body>
+</html>

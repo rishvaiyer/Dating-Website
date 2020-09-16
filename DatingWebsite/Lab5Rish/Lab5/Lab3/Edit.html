@@ -1,0 +1,813 @@
+﻿<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Edit Profile</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="Lab4.js"></script>
+
+
+        <style>
+            #editProfile {
+                display:none;
+              
+            }
+
+
+            #preview {
+                float: right; 
+                width: 30%;
+
+            }
+
+
+            body {
+                background-color: black;
+                color: white;
+                font-family: courier new;
+
+
+            }
+
+
+
+            .title {
+                color: pink;
+            }
+
+
+
+            .titleSize {
+                color: black;
+                font-size: 20px;
+                background: #e4cde2
+            }
+            #titleHeader{
+                padding-top: 100px;
+                font-size: 50px;
+                text-align: center;
+                padding-bottom: 10px;
+            }
+
+
+
+            #intro {
+                text-align: center;
+                margin: 0 auto;
+                font-size: 30px;
+
+            }
+            .form {
+                background-color: pink;
+                margin-top: 50px;
+                text-align: left;
+                font-size: 20px;
+
+                padding: 20px;
+                /*                height:400px;
+                                 overflow: auto;*/
+                background-color: black;
+                /*                border: 5px solid;
+                                border-color: #ff3a95;*/
+                color: pink;
+
+
+
+                box-sizing: border-box;
+
+            }
+
+
+
+            .radio {
+                color: white;
+            }
+
+
+            input[type=submit] {
+
+                height: 25px;
+                width: 100px;
+                display: inline-block;
+                font-size: 20px;
+                background-color: white;
+                border: none;
+            }
+
+
+
+            #navbar {
+                word-spacing: 40px;
+                position: absolute;
+                top: 0px;
+                z-index: 3;
+                background-color: black;
+                height: 10px;
+                width: 100%;
+                right: 0px;
+                text-align:center;
+                padding-top: 20px;
+                font-size:14px;
+                padding-bottom: 20px;
+
+                margin-bottom: 0;
+                font-family: courier new;
+
+
+
+
+
+            }
+            /* unvisited link */
+            a:link {
+                color: white;
+                text-decoration: none;
+            }
+
+            /* visited link */
+            a:visited {
+                color: white;
+                text-decoration: none;
+            }
+
+            /* mouse over link */
+            a:hover {
+
+                text-decoration-line: underline;
+
+
+            }
+
+            /* selected link */
+            a:active {
+                color: white;
+                text-decoration: none;
+                background-color:#ff3a95;
+
+            }
+
+            .beginning {
+
+                color:white;
+
+            }
+
+            #stuff {
+                margin: 0 auto;
+                color:white;
+
+
+                padding: 5%;
+                margin: 10%;
+
+                font-size: 30px;
+
+
+            }
+
+
+
+           
+
+
+
+            #allProfiles {
+                float: left;
+                width: 30%;
+            margin-left: 5%;
+                margin-top: 100px;
+                padding: 10px;
+                background-color: black;
+                border: 1px solid #e4c3c3;
+                color: white;
+            }
+
+
+            label { display: block; width: 10em; float: left;  }
+
+
+
+
+
+            #set1 {
+                padding: 40px;
+                float: left;
+                width: 50%;
+            }
+
+
+            #set2 {
+                float: right;
+                width: 30%;
+                padding: 40px;
+            }
+
+            fieldset {
+                margin: 60px;
+                color: white;
+
+            }
+
+            legend {
+                color:pink;
+                font-size: 30px;
+            }
+
+            .error {
+                color: red;
+                font-size: 12px;
+            }
+
+
+            .previewHeader {
+                font-size: 25px;
+                text-decoration: underline;
+            }
+
+
+
+            #allProfilesHeader {
+
+                color:pink;
+                font-size: 16px;
+
+            }
+
+
+            #savedMessage {
+                display:none;
+                text-align: center;
+                width: 70%;
+                margin: 0 auto;
+            }
+
+
+            #preview {
+
+             
+       
+            }
+
+
+            #profile_pic{
+                margin: 0 auto;
+                height:300px;
+                width:200px;
+                padding-bottom: 20px;
+
+            }
+            
+            
+            profile_pic_view {
+                float: left;
+                width:40%;
+            }
+            
+            .previewContainer {
+                width: 100%;
+                margin: 30px;
+            }
+        </style>
+    </head>
+
+
+    <body>
+
+
+
+        <script>
+
+            //            $(document).ready(function(){
+            //       var log_array = JSON.parse(localStorage.getItem("logArray"));
+            //
+            //                if(log_array.length!==0) {
+            //                    for(i=0;i<log_array.length;i++) {
+            //
+            //                         $("profile_pic_view").html("<img id='profile_pic' src='" + log_array[i].url + "'>" + "<br />");
+            //                        $("#preview").html(
+            //
+            //                                "<span class='title'>First Name:  </span>" + log_array[i].firstName + "" + "<br/>" +
+            //                                "<span class='title'>Last Name:  </span>" + log_array[i].lastName + "" + "<br/>" +
+            //                                "<span class='title'>Title:  </span>" + log_array[i].title + "" + "<br/>" +
+            //                                "<span class='title'>Age:  </span>" + log_array[i].age + "" + "<br/>" +
+            //                                "<span class='title'>Gender:  </span>" + log_array[i].my_gender + "" + "<br/>" +
+            //                                "<span class='title'>Birthday:  </span>" + log_array[i].birthday + "" + "<br/>" +
+            //                                "<span class='title'>Description:  </span>" + log_array[i].description + "" + "<br/>" +
+            //                                "<span class='title'>City:  </span>" + log_array[i].city + "" + "<br/>" +
+            //                                "<span class='title'>State:  </span>" + log_array[i].state + "" + "<br/>" +
+            //                                "<span class='title'>Religion:  </span>" + log_array[i].religion + "" + "<br/>" +
+            //                                "<span class='title'>Wants Kids?:  </span>" + log_array[i].wantsKids + "" + "<br/>" +
+            //                                "<span class='title'>Has Kids?:  </span>" + log_array[i].hasKids + "" + "<br/>" +
+            //                                "<span class='title'>Status: </span>" + log_array[i].status + "" + "<br/>");
+            //
+            //                        $("#preview").append('<input type="button" id="editProfileButton" value="Edit My Profile">');
+            //
+            //
+            //
+            //                    }
+            //                }
+            //
+            //
+            //            });
+            function findProfileById() {
+                var Id = $("#Id").val();
+                var display = "";
+                $.ajax({
+                    type: "GET",
+                    url: "https://localhost:44388/api/Profiles/GetById" + "?Id=" + Id,
+                    contentType: "application/json",
+                    dataType: "json",
+
+                    success: function (data) {
+                        for (i = 0; i < data.length; i++) {
+                        
+                                display += "<img id='profile_pic' src='" + data[i].ProfilePic + "'>" + "<br />" +
+                                    "<span class='title'>First Name:  </span>" + data[i].FirstName + "" + "<br/>" +
+                                    "<span class='title'>Last Name:  </span>" + data[i].LastName + "" + "<br/>" +
+                                    "<span class='title'>Title:  </span>" + data[i].Title + "" + "<br/>" +
+                                    "<span class='title'>Age:  </span>" + data[i].Age + "" + "<br/>" +
+                                    "<span class='title'>Description:  </span>" + data[i].Description + "" + "<br/>" +
+                                    "<span class='title'>City:  </span>" + data[i].City + "" + "<br/>" +
+                                    "<span class='title'>State:  </span>" + data[i].State + "" + "<br/>" +
+
+                                    "<span class='title'>Religion:  </span>" + data[i].Religion + "" + "<br/>"
+                                    + "<span class='title'>Wants Kids?:  </span>" + data[i].WantsKids + "" +
+                                    "<br/>"
+                                    + "<span class='title'>Has Kids?:  </span>" + data[i].HasKids + "" + "<br/>"
+                                    + "<span class='title'>Status?:  </span>" + data[i].Status + "" + "<br/>" +
+                                    "<span class='title'>Looking for:  </span>" + data[i].Gender + "" + "<br/>" +
+                                    "<span class='title'>Wants:  </span>" + data[i].RelationshipPrefrence + "" + "<br/>" +
+                                    "<br>" + "<br>" + "<br>" + "<br>";
+                                $("#preview").html(display);
+                            }
+                            
+                        
+
+                    }
+                });
+            };
+
+
+
+            //    $("#editProfileButton").click(function () {
+
+
+            //        var fname = $("#firstname").val();
+            //        var lname = $("#lastname").val();
+
+
+
+
+
+            //        var allProfiles = localStorage.getItem("array");
+            //        allProfiles_Object = JSON.parse(allProfiles);
+
+
+            //        for (i = 0; i < allProfiles_Object.length; i++) {
+
+            //            if (allProfiles_Object[i].firstName === fname && allProfiles_Object[i].lastName === lname)  {
+
+
+            //                $('#title').val(allProfiles_Object[i].title);
+            //                $('#fname').val(allProfiles_Object[i].firstName);
+            //                $('#lname').val(allProfiles_Object[i].lastName);
+            //                $('#age').val(allProfiles_Object[i].age);
+            //                $('#my_gender').val(allProfiles_Object[i].my_gender);
+            //                $('#city').val(allProfiles_Object[i].city);
+            //                $('#state').val(allProfiles_Object[i].state);
+            //                $('#birthday').val(allProfiles_Object[i].birthday);
+            //                $('#religion').val(allProfiles_Object[i].religion);
+            //                $('#description').val(allProfiles_Object[i].description);
+            //                $('#religionPrefrence').val(allProfiles_Object[i].religionPrefrence);
+            //                $('#relationshipPrefrence').val(allProfiles_Object[i].relationshipPrefrence);
+            //                $('#gender').val(allProfiles_Object[i].gender);
+            //                $('#url').val(allProfiles_Object[i].url);
+            //                $("input[name='status']:checked").val(allProfiles_Object[i].status);
+            //                $("input[name='hasKids']:checked").val(allProfiles_Object[i].hasKids);
+            //                $("input[name='wantsKids']:checked").val(allProfiles_Object[i].wantsKids);
+            //                $("#editProfile").show();
+
+
+
+
+
+
+
+            //            }
+
+            //        }
+
+            //    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            //        alert('saved');
+
+            //        $("#preview").html(
+            //            "<img id='profile_pic' src='" + NewPerson.url + "'>" + "<br />" + "<span class='title'>First Name:  </span>" + NewPerson.firstName + "" + "<br/>" +
+            //            "<span class='title'>Last Name:  </span>" + NewPerson.lastName + "" + "<br/>" +
+            //            "<span class='title'>Title:  </span>" + NewPerson.title + "" + "<br/>" +
+            //            "<span class='title'>Birthday:  </span>" + NewPerson.birthday + "" + "<br/>" +
+            //            "<span class='title'>Age:  </span>" + NewPerson.age + "" + "<br/>" +
+            //            "<span class='title'>Description:  </span>" + NewPerson.description + "" + "<br/>" +
+            //            "<span class='title'>City:  </span>" + NewPerson.city + "" + "<br/>" +
+            //            "<span class='title'>State:  </span>" + NewPerson.state + "" + "<br/>" +
+
+            //            "<span class='title'>Religion:  </span>" + NewPerson.religion + "" + "<br/>"
+            //            + "<span class='title'>Wants Kids?:  </span>" + NewPerson.wantsKids + "" +
+            //                "<br/>"
+            //            + "<span class='title'>Has Kids?:  </span>" + NewPerson.hasKids + "" + "<br/>"
+            //            + "<span class='title'>Status?:  </span>" + NewPerson.status + "" + "<br/>" +
+            //            "<span class='title'>Looking for:  </span>" + NewPerson.gender + "" + "<br/>" +
+            //            "<span class='title'>Wants:  </span>" + NewPerson.relationshipPrefrence + "" + "<br/>")
+
+
+
+
+            //        $("#editProfile").fadeOut();
+            //        $("#savedMessage").show();
+
+
+
+
+
+            //    }
+            //}
+
+            function deleteProfile() {
+                var Id = $("#Id").val();
+                $.ajax({
+                    type: "DELETE",
+                    url: "https://localhost:44388/api/Profiles/DeleteProfile" + "?Id=" + Id,
+                    contentType: "application/json",
+                    dataType: "json",
+
+                    success: function (data) {
+                        alert("Profile has been deleted")
+                        $("#preview").html("");
+                    }
+                });
+
+
+            }
+
+
+            function disableProfile() {
+                var Id = $("#Id").val();
+                $.ajax({
+                    type: "PUT",
+                    url: "https://localhost:44388/api/Profiles/DisableProfile" + "?Id=" + Id,
+                    contentType: "application/json",
+                    dataType: "json",
+
+                    success: function (data) {
+                        alert("Profile has been disabled, you won't show up in search results.")
+                        $("#preview").html("");
+                    }
+                });
+
+
+            }
+
+
+            function enableProfile() {
+                var Id = $("#Id").val();
+                $.ajax({
+                    type: "PUT",
+                    url: "https://localhost:44388/api/Profiles/EnableProfile" + "?Id=" + Id,
+                    contentType: "application/json",
+                    dataType: "json",
+
+                    success: function (data) {
+                        alert("Profile has been enabled, you will show up in search results.")
+                        $("#preview").html("");
+                    }
+                });
+
+
+            }
+
+            function editProfile() {
+                $("#editProfile").show();
+                var Id = $("#Id").val();
+                var display = "";
+                $.ajax({
+                    type: "GET",
+                    url: "https://localhost:44388/api/Profiles/GetById" + "?Id=" + Id,
+                    contentType: "application/json",
+                    dataType: "json",
+
+                    success: function (data) {
+                        for (i = 0; i < data.length; i++) {
+
+                            $('#title').val(data[i].Title);
+                            $('#fname').val(data[i].FirstName);
+                            $('#username').val(data[i].Username);
+                            $('#password').val(data[i].Password);
+                        $('#lname').val(data[i].LastName);
+                          $('#age').val(data[i].Age);
+                           $('#my_gender').val(data[i].My_Gender);
+                          $('#city').val(data[i].City);
+                          $('#state').val(data[i].State);
+                         $('#birthday').val(data[i].Birthday);
+                          $('#religion').val(data[i].Religion);
+                         $('#description').val(data[i].Description);
+                          $('#religionPrefrence').val(data[i].ReligionPrefrence);
+                           $('#relationshipPrefrence').val(data[i].RelationshipPrefrence);
+                           $('#gender').val(data[i].Gender);
+                           $('#url').val(data[i].ProfilePic);
+                            $("input[name='status']:checked").val(data[i].Status);
+                           $("input[name='hasKids']:checked").val(data[i].HasKids);
+                            $("input[name='wantsKids']:checked").val(data[i].WantsKids);
+                          
+                        }
+
+
+
+                    }
+                });
+                $("#preview").hide();
+
+
+            }
+
+            function editProfileSave() {
+                var Id = $("#Id").val();
+                var FirstName = $("#fname").val();
+                var LastName = $("#lname").val();
+                var Title =  $('#title').val();
+                 var Age =   $('#age').val();
+                var My_Gender = $('#my_gender').val();
+                var City = $('#city').val();
+                 var State =    $('#state').val();
+                var Username = $("#username").val();
+                var Password = $("#password").val();
+           var Religion =  $('#religion').val();
+            var Description = $('#description').val();
+           var ReligionPrefrence = $('#religionPrefrence').val();
+           var LookingFor = $('#relationshipPrefrence').val();
+          var Gender =      $('#gender').val();
+          var ProfilePic =     $('#url').val();
+            var Status =  $("input[name='status']:checked").val();
+         var HasKids =  $("input[name='hasKids']:checked").val();
+           var WantsKids =      $("input[name='wantsKids']:checked").val();
+        
+                
+                $.ajax({
+                    type: "PUT",
+                    url: "https://localhost:44388/api/Profiles/EditProfile" + "?Id=" + Id + "&FirstName=" + FirstName + "&LastName=" + LastName + "&Title=" + Title
+                        + "&Age=" + Age + "&My_Gender=" + My_Gender + "&City=" + City + "&State=" + State + "&Religion=" + Religion + "&Description=" + Description
+                        + "&ReligionPrefrence=" + ReligionPrefrence + "&LookingFor=" + LookingFor + "&Gender=" + Gender + "&ProfilePic=" + ProfilePic + "&Status=" + Status
+                        + "&HasKids=" + HasKids + "&WantsKids=" + WantsKids + "&Username=" + Username + "&Password=" + Password,
+                    
+                    contentType: "application/json",
+                    dataType: "json",
+
+                    success: function (data) {
+                        alert("Profile has been updated")
+                        $("#editProfile").hide()
+                       
+                    }
+                });
+
+
+            }
+
+            
+        </script>
+        <div id="navbar">
+            <a href="../Labs/index.html">Home</a>
+            <a href="Search.html">Search</a>
+            <a href="Edit.html">Profile</a>
+            <a href="Passed.html">Passed</a>
+            <a href="Liked.html">Liked</a>
+            <a href="makeProfile.html">Register</a>
+            <a href="LogIn.html">Log-In</a>
+
+
+
+
+        </div>
+
+
+
+        <div class="beginning">
+            <div id="titleHeader">
+                Find-A-<span class="title">Match</span>.com
+
+
+            </div>
+
+            <br>
+
+
+
+
+
+        </div>
+
+        <div class='previewContainer'>
+
+            <div id='profile_pic_view'>
+
+            </div>
+            <div id='preview'>
+
+            </div>
+        </div>
+
+        <div id="allProfiles">
+            <span id="allProfilesHeader">  Type in a profile ID below to view the profile, edit it, disable it, or delete it: </span>
+            <br><br>
+            <label for="Id"> Id: </label>
+            <input type="text" id="Id"> <br /><br />
+            <input type="button" id="findProfileButton" value="Find Profile" onclick='findProfileById()'>
+            <br />
+            <input type="button" id="editProfileButton" value="Edit Profile" onclick="editProfile()" />
+            <br />
+            <input type="button" id="disableProfileButton" value="Disable Profile" onclick="disableProfile()" />
+            <br />
+            <input type="button" id="enableProfileButton" value="Enable Profile" onclick="enableProfile()" />
+            <br />
+            <input type="button" id="deleteProfileButton" value="Delete Profile" onclick="deleteProfile()" />
+            <br />
+        </div>
+
+
+        <div id="savedMessage">
+            Your changes have been saved! Use the nav bar at the top and click 'Search' or just click <a href='Search.html'> here </a> to go search for matches.
+
+        </div>
+        <div id="editProfile">
+
+            <div class="form">
+
+    
+                    <fieldset>
+                        <legend>Edit Profile:</legend>
+                        <div id="set1">
+
+
+                            (<span class="error"> * </span> indicates a required field)
+                            <br>
+                            <br>
+                            <label for="username">Username:</label>
+                            <input type="text" id="username" name="username" required> <span class="error"> * </span>
+                            <br><br>
+                            <label for="password">Password:</label>
+                            <input type="password" id="password" name="password" required> <span class="error"> * </span>
+                            <br><br>
+                            <label for="fname">First Name:</label>
+                            <input type="text" id="fname" name="fname" required> <span class="error"> * </span>
+                            <br><br>
+                            <label for="lname">Last name:</label>
+                            <input type="text" id="lname" name="lname" required> <span class="error"> * </span>
+                            <br><br>
+                            <label for="my_gender">Gender:</label>
+                            <input type="text" id="my_gender" name="my_gender" required> <span class="error"> * </span>
+                            <br><br>
+                            <label for="url">Image URL:</label>
+                            <input type="text" id="url" name="lname" required> <span class="error"> * </span>
+                            <br><br>
+                            <label for="birthday">Birthday:</label>
+                            <input type="text" id="birthday" name="birthday" required> <span class="error"> * </span>
+                            <br><br>
+                            <label for="title">Title:</label>
+                            <input type="text" id="title" name="title" required><span class="error"> * </span>
+                            <br><br>
+
+
+
+
+                            <label for="age">Age:</label>
+                            <input type="text" id="age" name="age" required><span class="error"> * </span>
+                            <br><br>
+
+                            <label for="description">Description:</label>
+                            <input type="text" id="description" name="description" required> <span class="error"> * </span>
+                            <br><br>
+                            <label for="city">City:</label>
+                            <input type="text" id="city" name="city" required><span class="error"> * </span>
+                            <br>
+                            <br>
+                            <label for="state">State:</label>
+                            <input type="text" id="state" name="state" required> <span class="error"> * </span>
+                            <br><br>
+
+
+
+                            <label for="religion">Religion:</label>
+                            <input type="text" id="religion" name="religion" required> <span class="error"> * </span>
+                            <br><br>
+
+
+
+                        </div>
+
+
+
+
+                        <div id="set2">
+                            <span id='title2'> Relationship Status</span>
+
+
+
+                            <span class="radio">
+                                <br>
+                                <input type="radio" id="single" name="status" value="Single" required>
+                                <label for="single">Single</label><br>
+
+                                <input type="radio" id="taken" name="status" value="Taken" required>
+                                <label for="taken">Taken</label><br>
+
+                            </span>
+
+                            <br><br>
+                            <span id='title2'> Do you have kids? </span>
+                            <br>
+                            <span class="radio">
+                                <input type="radio" id="yesKids" name="hasKids" value="Yes" required>
+                                <label for="yesKids">Yes</label><br>
+
+                                <input type="radio" id="noKids" name="hasKids" value="No" required>
+                                <label for="noKids">No</label><br>
+                            </span>
+                            <br>
+                            <span id='title2'>  Do you want kids? </span>
+                            <br>
+                            <span class="radio">
+                                <input type="radio" id="yes" name="wantsKids" value="Yes" required>
+                                <label for="yes">Yes</label><br>
+
+                                <input type="radio" id="no" name="wantsKids" value="No" required>
+                                <label for="no">No</label><br>
+                            </span>
+
+                            <br><br><br>
+                            <label for="gender">I'm Looking for....</label>
+                            <select id="gender">
+                                <option value="Females">Females</option>
+                                <option value="Males">Males</option>
+                                <option value="All">All</option>
+                            </select>
+                            <br><br><br>
+                            <label for="gender">That want a...</label>
+                            <select id="relationshipPrefrence">
+                                <option value="Long-Term">Long-Term Relationship</option>
+                                <option value="Short-Term">Short-Term Relationship</option>
+                                <option value="Friendship">Friendship</option>
+                                <option value="Casual">Casual Relationship</option>
+
+                            </select>
+
+                            <br><br><br>
+                            <label for="religionPrefrence">And are... </label>
+                            <select id="religionPrefrence">
+                                <option value="Athesist">Atheist</option>
+                                <option value="Agnostic">Agnostic</option>
+                                <option value="Buddhist">Buddhist</option>
+                                <option value="Catholic">Catholic</option>
+                                <option value="Christian">Christian</option>
+                                <option value="Hindu">Hindu</option>
+                                <option value="Islamic">Islamic</option>
+                                <option value="Other">Other</option>
+
+
+                            </select>
+                            <br><br>
+
+                            <input name="Submit" type="button" id="buttonSubmit1" value="submit" onclick="editProfileSave()">
+
+
+
+                        </div>
+                    </fieldset>
+        
+            </div>
+
+
+</body>
+</html>
+
+
